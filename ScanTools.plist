@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ScanTools</key>
+	<array>
+		<string>/usr/bin/locate *.icns</string>
+		<string>/usr/bin/mdfind -name .icns</string>
+		<string>find / \! \( -path &quot;/bin/*&quot; -or -path &quot;/dev/*&quot; -or -path &quot;/usr/*&quot; -or -path &quot;/sbin/*&quot; -or -path &quot;/private/*&quot; -or -path &quot;/usr/*&quot; -or -name &quot;.*&quot; \) -name *.icns -print</string>
+	</array>
+</dict>
+</plist>
