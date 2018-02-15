@@ -3,7 +3,8 @@
 //  IconScanner
 //
 //  Created by Sveinbjorn Thordarson on 9/7/10.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Sveinbjorn Thordarson. All rights reserved.
+//  Distributed under a 3-clause BSD License
 //
 
 #import "IconScannerAppDelegate.h"
@@ -16,7 +17,7 @@
 	int imageSize;
 }
 - (int)imageSize;
--(void)setImageSize: (int)size;
+- (void)setImageSize: (int)size;
 
 @end
 
@@ -96,13 +97,12 @@
 
 @synthesize window;
 
-
 + (void)initialize 
 { 
 	// create the user defaults here if none exists
     NSMutableDictionary *defaultPrefs = [NSMutableDictionary dictionary];
     
-	[defaultPrefs setObject: [NSNumber numberWithBool:YES] 		forKey: @"pathInFilter"];
+	[defaultPrefs setObject: [NSNumber numberWithBool:YES] forKey: @"pathInFilter"];
 	[defaultPrefs setObject: [NSNumber numberWithBool:NO] forKey: @"filenameInFilter"];
 	[defaultPrefs setObject: [NSNumber numberWithInt: 0] forKey: @"scanToolIndex"];
 	[defaultPrefs setObject: [NSNumber numberWithFloat: 0.5] forKey: @"iconDisplaySize"];
@@ -116,10 +116,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification 
 {	
-	[[NSNotificationCenter defaultCenter] addObserver: self
-											 selector: @selector(foundFiles)
-												 name: @"IconScannerFilesFoundNotification"
-											   object: NULL];	
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(foundFiles)
+												 name:@"IconScannerFilesFoundNotification"
+											   object:NULL];
 }
 
 // -------------------------------------------------------------------------
@@ -432,7 +432,6 @@
 -(IBAction)searchCatSet:(id)sender
 {
 	[sender setState: ![sender state]];
-	int tag = [sender tag];
 
 	[[NSUserDefaults standardUserDefaults] setBool: [sender state] forKey: @"pathInFilter"];
 	[[NSUserDefaults standardUserDefaults] setBool: ![sender state] forKey: @"filenameInFilter"];

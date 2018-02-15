@@ -1,9 +1,9 @@
 //
-//  PlatypusIconView.h
-//  Platypus
+//  DraggableIconView.h
 //
-//  Created by Sveinbjorn Thordarson on 8/28/10.
+//  Created by Sveinbjorn Thordarson on 9/7/10.
 //  Copyright 2010 Sveinbjorn Thordarson. All rights reserved.
+//  Distributed under a 3-clause BSD License
 //
 
 #import <Cocoa/Cocoa.h>
@@ -13,6 +13,8 @@
 	id delegate;
 	NSEvent *downEvent;
 }
--(void)setDelegate: (id)theDelegate;
--(id)delegate;
+
+- (void)setDelegate:(id)theDelegate;
+- (id)delegate;
+
 @end
