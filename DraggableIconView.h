@@ -23,6 +23,6 @@
     NSEvent *downEvent;
 }
 
-@property (nonatomic, assign) id <DraggableIconViewDelegate>delegate;
+@property (nonatomic, unsafe_unretained) id <DraggableIconViewDelegate>delegate;
 
 @end

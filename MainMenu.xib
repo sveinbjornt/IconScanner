@@ -13,23 +13,26 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="IconScanner" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" frameAutosaveName="IconScannerMainWindow" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="371" y="166" width="684" height="642"/>
+            <rect key="contentRect" x="371" y="166" width="684" height="649"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <value key="minSize" type="size" width="500" height="400"/>
-            <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="684" height="642"/>
+            <value key="minSize" type="size" width="560" height="400"/>
+            <view key="contentView" misplaced="YES" id="372">
+                <rect key="frame" x="0.0" y="0.0" width="684" height="649"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button verticalHuggingPriority="750" imageHugsTitle="YES" id="536">
-                        <rect key="frame" x="547" y="12" width="123" height="32"/>
+                    <button verticalHuggingPriority="750" misplaced="YES" imageHugsTitle="YES" id="536">
+                        <rect key="frame" x="547" y="13" width="123" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Scan" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="546">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                         </buttonCell>
                         <connections>
                             <action selector="scan:" target="494" id="580"/>
@@ -46,11 +49,11 @@
                             <binding destination="636" name="value" keyPath="values.iconDisplaySize" id="725"/>
                         </connections>
                     </slider>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="538">
-                        <rect key="frame" x="20" y="48" width="644" height="384"/>
+                    <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="538">
+                        <rect key="frame" x="20" y="60" width="644" height="379"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" autoresizesSubviews="NO" id="Zi0-hg-dS2">
-                            <rect key="frame" x="1" y="1" width="627" height="382"/>
+                            <rect key="frame" x="1" y="1" width="627" height="377"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView id="544" customClass="IKImageBrowserView">
@@ -73,12 +76,12 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="543">
-                            <rect key="frame" x="628" y="1" width="15" height="382"/>
+                            <rect key="frame" x="628" y="1" width="15" height="377"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
                     <box autoresizesSubviews="NO" borderType="line" title="Box" id="547">
-                        <rect key="frame" x="17" y="467" width="650" height="166"/>
+                        <rect key="frame" x="17" y="474" width="650" height="166"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <view key="contentView" id="sH3-FB-2Ub">
                             <rect key="frame" x="1" y="1" width="648" height="150"/>
@@ -92,20 +95,11 @@
                                         <outlet property="delegate" destination="494" id="706"/>
                                     </connections>
                                 </imageView>
-                                <textField verticalHuggingPriority="750" id="550">
-                                    <rect key="frame" x="146" y="67" width="487" height="48"/>
+                                <textField verticalHuggingPriority="750" misplaced="YES" id="550">
+                                    <rect key="frame" x="146" y="67" width="363" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" id="551">
                                         <font key="font" metaFont="smallSystem"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
-                                <textField verticalHuggingPriority="750" id="552">
-                                    <rect key="frame" x="145" y="115" width="38" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path" allowsEditingTextAttributes="YES" id="553">
-                                        <font key="font" metaFont="systemBold"/>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
@@ -164,15 +158,35 @@
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>
                                 </textField>
+                                <button verticalHuggingPriority="750" misplaced="YES" id="VZW-OQ-xcv">
+                                    <rect key="frame" x="519" y="102" width="115" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Save Copy..." bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="T8P-FP-nfq">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="saveCopy:" target="494" id="Xwt-ho-JPx"/>
+                                    </connections>
+                                </button>
+                                <textField verticalHuggingPriority="750" misplaced="YES" id="552">
+                                    <rect key="frame" x="145" y="113" width="38" height="17"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Path" allowsEditingTextAttributes="YES" id="553">
+                                        <font key="font" metaFont="systemBold"/>
+                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    </textFieldCell>
+                                </textField>
                             </subviews>
                         </view>
                     </box>
-                    <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" id="554">
-                        <rect key="frame" x="412" y="16" width="100" height="26"/>
+                    <popUpButton verticalHuggingPriority="750" misplaced="YES" imageHugsTitle="YES" id="554">
+                        <rect key="frame" x="414" y="16" width="100" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <popUpButtonCell key="cell" type="push" title="locate" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="559" id="555">
                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
+                            <font key="font" metaFont="menu"/>
                             <menu key="menu" title="OtherViews" id="556">
                                 <items>
                                     <menuItem title="find" id="557"/>
@@ -185,17 +199,8 @@
                             <binding destination="636" name="selectedTag" keyPath="values.scanToolIndex" id="731"/>
                         </connections>
                     </popUpButton>
-                    <textField verticalHuggingPriority="750" id="560">
-                        <rect key="frame" x="346" y="22" width="64" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Scan with" id="561">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField verticalHuggingPriority="750" id="591">
-                        <rect key="frame" x="423" y="444" width="80" height="17"/>
+                        <rect key="frame" x="423" y="451" width="80" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Search filter" id="592">
                             <font key="font" metaFont="system"/>
@@ -204,7 +209,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="593">
-                        <rect key="frame" x="17" y="444" width="261" height="17"/>
+                        <rect key="frame" x="17" y="451" width="261" height="17"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="594">
                             <font key="font" metaFont="system"/>
@@ -212,12 +217,12 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="578">
-                        <rect key="frame" x="525" y="21" width="16" height="16"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="578">
+                        <rect key="frame" x="526" y="22" width="16" height="16"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     </progressIndicator>
                     <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="589">
-                        <rect key="frame" x="508" y="441" width="156" height="22"/>
+                        <rect key="frame" x="508" y="448" width="156" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                         <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" borderStyle="bezel" bezelStyle="round" id="590">
                             <font key="font" metaFont="system"/>
@@ -237,11 +242,21 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField verticalHuggingPriority="750" misplaced="YES" id="560">
+                        <rect key="frame" x="340" y="22" width="71" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Scan using" id="561">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="494" id="534"/>
             </connections>
+            <point key="canvasLocation" x="131" y="164.5"/>
         </window>
         <customObject id="494" customClass="IconScannerController">
             <connections>
@@ -252,6 +267,7 @@
                 <outlet property="progressIndicator" destination="578" id="600"/>
                 <outlet property="progressTextField" destination="711" id="714"/>
                 <outlet property="progressWindow" destination="708" id="713"/>
+                <outlet property="saveCopyButton" destination="VZW-OQ-xcv" id="6ya-9O-xA2"/>
                 <outlet property="scanButton" destination="536" id="577"/>
                 <outlet property="searchFilterTextField" destination="589" id="595"/>
                 <outlet property="searchToolPopupButton" destination="554" id="707"/>

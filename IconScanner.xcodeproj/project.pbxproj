@@ -12,8 +12,10 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F4493F3D203D92490035D947 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4493F3C203D92490035D947 /* Images.xcassets */; };
 		F4493F3F203D92930035D947 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F4493F3E203D92930035D947 /* Credits.rtf */; };
+		F4493F45203D9EBC0035D947 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F4493F44203D9EBC0035D947 /* README.md */; };
+		F4493F48203E22580035D947 /* NSWorkspace+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = F4493F47203E22580035D947 /* NSWorkspace+Additions.m */; };
+		F4493F4B203E28C00035D947 /* Alerts.m in Sources */ = {isa = PBXBuildFile; fileRef = F4493F49203E28BF0035D947 /* Alerts.m */; };
 		F470F9921235CC1900F6498D /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F470F9911235CC1900F6498D /* Quartz.framework */; };
-		F470F9C31235D0E100F6498D /* STUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F470F9C21235D0E100F6498D /* STUtil.m */; };
 		F47FD7F71239C8C900894F36 /* ScanTools.plist in Resources */ = {isa = PBXBuildFile; fileRef = F47FD7F61239C8C900894F36 /* ScanTools.plist */; };
 		F4F0D13B123719D000A70C51 /* DraggableIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F0D13A123719D000A70C51 /* DraggableIconView.m */; };
 		F4F0D21212372F7400A70C51 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58150DA1D0A300B32029 /* MainMenu.xib */; };
@@ -30,9 +32,12 @@
 		8D1107320486CEB800E47090 /* IconScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4493F3C203D92490035D947 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = IconScanner/Images.xcassets; sourceTree = "<group>"; };
 		F4493F3E203D92930035D947 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		F4493F44203D9EBC0035D947 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F4493F46203E22580035D947 /* NSWorkspace+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWorkspace+Additions.h"; sourceTree = "<group>"; };
+		F4493F47203E22580035D947 /* NSWorkspace+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWorkspace+Additions.m"; sourceTree = "<group>"; };
+		F4493F49203E28BF0035D947 /* Alerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alerts.m; sourceTree = "<group>"; };
+		F4493F4A203E28C00035D947 /* Alerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alerts.h; sourceTree = "<group>"; };
 		F470F9911235CC1900F6498D /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
-		F470F9C11235D0E100F6498D /* STUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUtil.h; sourceTree = "<group>"; };
-		F470F9C21235D0E100F6498D /* STUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUtil.m; sourceTree = "<group>"; };
 		F47FD7F61239C8C900894F36 /* ScanTools.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScanTools.plist; sourceTree = "<group>"; };
 		F4A122E22035AEB200A7F19E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		F4F0D139123719D000A70C51 /* DraggableIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableIconView.h; sourceTree = "<group>"; };
@@ -75,6 +80,7 @@
 		29B97314FDCFA39411CA2CEA /* IconScanner */ = {
 			isa = PBXGroup;
 			children = (
+				F4493F44203D9EBC0035D947 /* README.md */,
 				F4A122E22035AEB200A7F19E /* LICENSE.txt */,
 				080E96DDFE201D6D7F000001 /* Source */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -108,10 +114,12 @@
 		F4493F43203D93990035D947 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				F4493F4A203E28C00035D947 /* Alerts.h */,
+				F4493F49203E28BF0035D947 /* Alerts.m */,
+				F4493F46203E22580035D947 /* NSWorkspace+Additions.h */,
+				F4493F47203E22580035D947 /* NSWorkspace+Additions.m */,
 				F4F0D139123719D000A70C51 /* DraggableIconView.h */,
 				F4F0D13A123719D000A70C51 /* DraggableIconView.m */,
-				F470F9C11235D0E100F6498D /* STUtil.h */,
-				F470F9C21235D0E100F6498D /* STUtil.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			files = (
 				F4493F3D203D92490035D947 /* Images.xcassets in Resources */,
 				F4F0D21212372F7400A70C51 /* MainMenu.xib in Resources */,
+				F4493F45203D9EBC0035D947 /* README.md in Resources */,
 				F47FD7F71239C8C900894F36 /* ScanTools.plist in Resources */,
 				F4493F3F203D92930035D947 /* Credits.rtf in Resources */,
 			);
@@ -184,8 +193,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				F4493F48203E22580035D947 /* NSWorkspace+Additions.m in Sources */,
+				F4493F4B203E28C00035D947 /* Alerts.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* IconScannerController.m in Sources */,
-				F470F9C31235D0E100F6498D /* STUtil.m in Sources */,
 				F4F0D13B123719D000A70C51 /* DraggableIconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -196,20 +206,20 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IconScanner_Prefix.pch;
 				INFOPLIST_FILE = "IconScanner-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.IconScanner;
 				PRODUCT_NAME = IconScanner;
@@ -220,17 +230,16 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5WX26Y89JP;
-				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IconScanner_Prefix.pch;
 				INFOPLIST_FILE = "IconScanner-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.IconScanner;
 				PRODUCT_NAME = IconScanner;
@@ -257,8 +266,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -291,8 +300,8 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_NO_COMMON_BLOCKS = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

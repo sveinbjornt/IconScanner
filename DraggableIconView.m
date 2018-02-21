@@ -57,12 +57,12 @@
 #pragma mark - Drag source
 
 - (void)mouseDown:(NSEvent*)event {
-    //get the Pasteboard used for drag and drop operations
-    NSPasteboard *dragPasteboard = [NSPasteboard pasteboardWithName:NSDragPboard];
-    
     if ([self image] == nil) {
         return;
     }
+    
+    //get the Pasteboard used for drag and drop operations
+    NSPasteboard *dragPasteboard = [NSPasteboard pasteboardWithName:NSDragPboard];
     
     //create a new image for our semi-transparent drag image
     NSImage *dragImage = [[NSImage alloc] initWithSize:[[self image] size]];
@@ -92,7 +92,6 @@
              source:self                        //object where the image is coming from
           slideBack:YES];                       //if the drag fails slide the icon back
     
-    [dragImage release];
 }
 
 - (NSDragOperation)draggingSourceOperationMaskForLocal:(BOOL)flag {

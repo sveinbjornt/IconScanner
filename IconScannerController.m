@@ -8,15 +8,15 @@
 //
 
 #import "IconScannerController.h"
-#import "STUtil.h"
+#import "Alerts.h"
+#import "NSWorkspace+Additions.h"
 #import <Quartz/Quartz.h>
 
+#pragma mark - Data source object
 
-//==============================================================================
-// This is the data source object.
 @interface myImageObject : NSObject
 {
-    NSString* path; 
+    NSString* path;
     int imageSize;
 }
 @property (nonatomic) int imageSize;
@@ -25,20 +25,13 @@
 
 @implementation myImageObject
 
-- (void)dealloc {
-    [path release];
-    [super dealloc];
-}
-
-- (void)setPath:(NSString*)inPath {
+- (void)setPath:(NSString *)inPath {
     if (path != inPath) {
-        [path release];
-        path = [inPath retain];
+        path = inPath;
     }
 }
 
-// The required methods of the IKImageBrowserItem protocol.
-#pragma mark - Item data source protocol
+#pragma mark IKImageBrowserItem protocol
 
 - (NSString*)imageRepresentationType {
     return IKImageBrowserPathRepresentationType;
@@ -61,6 +54,8 @@
 }
 
 @end
+
+#pragma mark - UI Controller
 
 @interface IconScannerController ()
 {
@@ -89,7 +84,9 @@
     IBOutlet id                     numItemsLabel;
     IBOutlet id                     searchFilterTextField;
     IBOutlet id                     searchToolPopupButton;
+    IBOutlet id                     saveCopyButton;
     
+
     int                             itemsFound;
     IBOutlet id                     progressWindow;
     IBOutlet id                     progressBar;
@@ -97,7 +94,7 @@
 }
 - (IBAction)scan:(id)sender;
 - (IBAction)zoomSliderDidChange:(id)sender;
-
+- (IBAction)saveCopy:(id)sender;
 @end
 
 @implementation IconScannerController
@@ -122,15 +119,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(foundFiles)
                                                  name:@"IconScannerFilesFoundNotification"
-                                               object:NULL];
-}
-
-- (void)dealloc {
-    [images release];
-    [importedImages release];
-    [activeSet release];
-    [imagesSubset release];
-    [super dealloc];
+                                               object:nil];
 }
 
 - (void)awakeFromNib {
@@ -140,13 +129,11 @@
     importedImages = [[NSMutableArray alloc] init];
     
     // Allow reordering, animations and set the dragging destination delegate.
-    [imageBrowser setAllowsReordering:YES];
     [imageBrowser setAnimates:YES];
     [imageBrowser setDraggingDestinationDelegate:self];
     [imageBrowser setAllowsMultipleSelection:NO];
+    [imageBrowser setAllowsReordering:NO];
     [imageBrowser setZoomValue:[[[NSUserDefaults standardUserDefaults] objectForKey:@"iconDisplaySize"] floatValue]];
-    imagesSubset = NULL;
-    filterTimer = NULL;
 }
 
 - (void)updateDatasource {
@@ -160,8 +147,6 @@
     [imageBrowser reloadData];
 }
 
-#pragma mark - Import images from file system
-
 // -------------------------------------------------------------------------
 //    isImageFile:filePath
 //
@@ -171,9 +156,9 @@
 //
 // -------------------------------------------------------------------------
 - (BOOL)isImageFile:(NSString *)filePath {
-    BOOL                isImageFile = NO;
-    LSItemInfoRecord    info;
-    CFStringRef         uti = NULL;
+    BOOL isImageFile = NO;
+    LSItemInfoRecord info;
+    CFStringRef uti = NULL;
     
     CFURLRef url = CFURLCreateWithFileSystemPath(NULL, (CFStringRef)filePath, kCFURLPOSIXPathStyle, FALSE);
     
@@ -219,14 +204,12 @@
         myImageObject* p = [[myImageObject alloc] init];
         [p setPath:path];
         [importedImages addObject:p];
-        [p release];
     }
 }
 
 - (IBAction)scan:(id)sender {
     if ([[sender title] isEqualToString:@"Cancel"]) {
         [task terminate];
-        [output release];
         [progressIndicator stopAnimation:self];
         [sender setTitle:@"Scan"];
         return;
@@ -271,7 +254,7 @@
         [task setLaunchPath:@"/usr/bin/find"];
         [task setArguments:@[@"/", @"-name", @"*.icns"]];
     } else {
-        [STUtil fatalAlert:@"Illegal search tool" subText:@"No search tool specified"];
+        [Alerts fatalAlert:@"Illegal search tool" subText:@"No search tool specified"];
     }
 
     [task launch];
@@ -285,7 +268,7 @@
        didEndSelector:nil
           contextInfo:nil];
     
-    //set off timer that checks task status, i.e. when it's done 
+    //set off timer that checks task status, i.e. when it's done
     checkStatusTimer = [NSTimer scheduledTimerWithTimeInterval:0.25
                                                         target:self
                                                       selector:@selector(checkTaskStatus)
@@ -301,9 +284,9 @@
     //make sure there's actual data
     if ([data length]) {
         //append the output to the text field
-        NSString *outputStr = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
+        NSString *outputStr = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
         
-        output = [[output stringByAppendingString:outputStr] retain];
+        output = [output stringByAppendingString:outputStr];
         
         itemsFound += [[outputStr componentsSeparatedByString:@"\n"] count]-1;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"IconScannerFilesFoundNotification" object:self];
@@ -312,7 +295,6 @@
         [[aNotification object] readInBackgroundAndNotify];
     }
 }
-
 
 // check if task is running
 - (void)checkTaskStatus {
@@ -327,13 +309,12 @@
     [appPaths removeLastObject];
     [self addImagesWithPaths:appPaths];
     
-    [output release];
     [progressIndicator stopAnimation:self];
     [self filterResults];
     [self updateDatasource];
     [numItemsLabel setStringValue:[NSString stringWithFormat:@"%d items", (int)[activeSet count]]];
     [searchFilterTextField setEnabled:YES];
-    task = NULL;
+    task = nil;
     [scanButton setTitle:@"Scan"];
     
     // Dialog ends here.
@@ -346,9 +327,6 @@
     NSEnumerator *e = [images objectEnumerator];
     id object;
     
-    if (imagesSubset != NULL) {
-        [imagesSubset release];
-    }
     
     imagesSubset = [[NSMutableArray alloc] init];
     NSString *filterString = [searchFilterTextField stringValue];
@@ -370,14 +348,14 @@
     }
     
     activeSet = imagesSubset;
-        
+    
     [numItemsLabel setStringValue:[NSString stringWithFormat:@"%d items", (int)[activeSet count]]];
 }
 
 - (void)controlTextDidChange:(NSNotification *)aNotification {
-    if (filterTimer != NULL) {
+    if (filterTimer != nil) {
         [filterTimer invalidate];
-        filterTimer = NULL;
+        filterTimer = nil;
     }
     filterTimer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(updateListing) userInfo:nil repeats:NO];
 }
@@ -386,14 +364,15 @@
     [self filterResults];
     [self updateDatasource];
     [filterTimer invalidate];
-    filterTimer = NULL;
+    filterTimer = nil;
 }
 
 - (NSString *)selectedFilePath {
     NSUInteger sel = [[imageBrowser selectionIndexes] firstIndex];
-    if (sel == -1) {
+    if (sel == -1 || sel > [activeSet count]) {
         return @"";
     }
+    
     NSString *path =  [activeSet[sel] imageRepresentation];
     return path;
 }
@@ -409,29 +388,25 @@
 //    add these paths in the temporary images array.
 // -------------------------------------------------------------------------
 - (void)addImagesWithPaths:(NSArray*)paths {
-    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    [paths retain];
-    
-    NSInteger i, n;
-    n = [paths count];
-    for (i = 0; i < n; i++) {
-        NSString* path = paths[i];
+    @autoreleasepool {
         
-        BOOL dir;
-        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&dir];
-        if (!dir) {
-            [self addAnImageWithPath:path];
+        NSInteger i, n;
+        n = [paths count];
+        for (i = 0; i < n; i++) {
+            NSString* path = paths[i];
+            
+            BOOL dir;
+            [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&dir];
+            if (!dir) {
+                [self addAnImageWithPath:path];
+            }
         }
+        
+        // Update the data source in the main thread.
+        [self performSelectorOnMainThread:@selector(updateDatasource) withObject:nil waitUntilDone:YES];
+        
     }
-    
-    // Update the data source in the main thread.
-    [self performSelectorOnMainThread:@selector(updateDatasource) withObject:nil waitUntilDone:YES];
-    
-    [paths release];
-    [pool release];
 }
-
-#pragma mark - Actions
 
 - (IBAction)zoomSliderDidChange:(id)sender {
     // update the zoom value to scale images
@@ -441,7 +416,31 @@
     [imageBrowser setNeedsDisplay:YES];
 }
 
-#pragma mark - IKImageBrowserDataSource
+- (IBAction)saveCopy:(id)sender {
+    NSString *path = [self selectedFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path] == NO) {
+        NSBeep();
+        return;
+    }
+    
+    // Run save panel
+    NSSavePanel *sPanel = [NSSavePanel savePanel];
+    [sPanel setPrompt:@"Save"];
+    [sPanel setNameFieldStringValue:[path lastPathComponent]];
+    [sPanel beginSheetModalForWindow:window completionHandler:^(NSInteger result) {
+        NSString *destPath = [[sPanel URL] path];
+        NSError *error;
+        BOOL res = [[NSFileManager defaultManager] copyItemAtPath:path toPath:destPath error:&error];
+        if (!res) {
+            NSBeep();
+            NSLog(@"%@", [error localizedDescription]);
+        }
+    }];
+
+    
+}
+
+#pragma mark IKImageBrowserDataSource
 
 // Implement the image browser data source protocol .
 // The data source representation is a simple mutable array.
@@ -462,14 +461,16 @@
     return NO;
 }
 
-#pragma mark - IKImageBrowserDelegate
+#pragma mark IKImageBrowserDelegate
 
 - (void)imageBrowserSelectionDidChange:(IKImageBrowserView *)aBrowser {
+    [saveCopyButton setEnabled:[[self selectedFilePath] length]];
+    
     NSString *path = [self selectedFilePath];
     [selectedIconPathLabel setStringValue:path];
-    [selectedIconFileSizeLabel setStringValue:[STUtil fileOrFolderSizeAsHumanReadable:path]];
+    [selectedIconFileSizeLabel setStringValue:[[NSWorkspace sharedWorkspace] fileOrFolderSizeAsHumanReadable:path]];
     
-    NSImage *img = [[[NSImage alloc] initByReferencingFile:path] autorelease];
+    NSImage *img = [[NSImage alloc] initByReferencingFile:path];
     [selectedIconImageView setImage:img];
     [selectedIconBox setTitle:[path lastPathComponent]];
     
@@ -487,7 +488,86 @@
     [selectedIconRepsLabel setStringValue:[NSString stringWithFormat:@"%d", (int)[reps count]]];
 }
 
-#pragma mark - Drag and Drop
+- (void)imageBrowser:(IKImageBrowserView *)aBrowser cellWasDoubleClickedAtIndex:(NSUInteger)index {
+    NSString *path =  [activeSet[index] imageRepresentation];
+    BOOL cmdKeyDown = (([[NSApp currentEvent] modifierFlags] & NSCommandKeyMask) == NSCommandKeyMask);
+    
+    if (cmdKeyDown) {
+        [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:path];
+    } else {
+        [[NSWorkspace sharedWorkspace] openFile:path];
+    }
+}
+
+- (void)imageBrowser:(IKImageBrowserView *)aBrowser cellWasRightClickedAtIndex:(NSUInteger)index withEvent:(NSEvent *)event {
+    NSUInteger i = [aBrowser indexOfItemAtPoint:[aBrowser convertPoint:[event locationInWindow] fromView:nil]];
+    if (i == NSNotFound) {
+        return;
+    }
+
+    NSString *path =  [self selectedFilePath];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path] == NO) {
+        return;
+    }
+    
+    NSMenu *menu = [[NSMenu alloc] initWithTitle:@"menu"];
+    [menu setAutoenablesItems:NO];
+    
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:@"Open" action:@selector(openFile:) keyEquivalent:@""];
+    [item setTarget:self];
+    [menu addItem:item];
+    
+    item = [[NSMenuItem alloc] initWithTitle:@"Open With" action:nil keyEquivalent:@""];
+    [item setSubmenu:[self getOpenWithSubmenuForFile:path]];
+    [menu addItem:item];
+    
+    [menu addItem:[NSMenuItem separatorItem]];
+    
+    item = [[NSMenuItem alloc] initWithTitle:@"Get Info" action:@selector(getInfo:) keyEquivalent:@""];
+    [item setTarget:self];
+    [menu addItem:item];
+    
+    item = [[NSMenuItem alloc] initWithTitle:@"Show in Finder" action:@selector(showInFinder:) keyEquivalent:@""];
+    [item setTarget:self];
+    [menu addItem:item];
+    
+    [NSMenu popUpContextMenu:menu withEvent:event forView:aBrowser];
+}
+
+#pragma mark Contextual menu
+
+- (void)openFile:(id)sender {
+    NSString *path = [self selectedFilePath];
+    [[NSWorkspace sharedWorkspace] openFile:path];
+}
+
+- (void)showInFinder:(id)sender {
+    NSString *path = [self selectedFilePath];
+    [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:path];
+}
+
+- (void)getInfo:(id)sender {
+    NSString *path = [self selectedFilePath];
+    [[NSWorkspace sharedWorkspace] getInfoInFinderForFile:path];
+}
+
+- (void)openWithSelected:(id)sender {
+    NSString *appName = [[[sender toolTip] lastPathComponent] stringByDeletingPathExtension];
+    [[NSWorkspace sharedWorkspace] openFile:[self selectedFilePath] withApplication:appName];
+    NSLog(@"Opening %@ with %@", [self selectedFilePath], appName);
+}
+
+- (NSMenu *)getOpenWithSubmenuForFile:(NSString *)path {
+    // lazy load
+    static NSMenu *menu = nil;
+    if (menu) {
+        return menu;
+    }
+    menu = [[NSWorkspace sharedWorkspace] openWithMenuForFile:path target:self action:@selector(openWithSelected:)];
+    return menu;
+}
+
+#pragma mark Drag and Drop
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     return NSDragOperationNone;
