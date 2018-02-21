@@ -7,14 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		256AC3DA0F4B6AC300CF3369 /* IconScannerAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* IconScannerAppDelegate.m */; };
+		256AC3DA0F4B6AC300CF3369 /* IconScannerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* IconScannerController.m */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F4493F3D203D92490035D947 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4493F3C203D92490035D947 /* Images.xcassets */; };
+		F4493F3F203D92930035D947 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F4493F3E203D92930035D947 /* Credits.rtf */; };
 		F470F9921235CC1900F6498D /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F470F9911235CC1900F6498D /* Quartz.framework */; };
 		F470F9C31235D0E100F6498D /* STUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = F470F9C21235D0E100F6498D /* STUtil.m */; };
 		F47FD7F71239C8C900894F36 /* ScanTools.plist in Resources */ = {isa = PBXBuildFile; fileRef = F47FD7F61239C8C900894F36 /* ScanTools.plist */; };
-		F4F0D0401236F25A00A70C51 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F0D03F1236F25A00A70C51 /* RegexKitLite.m */; };
-		F4F0D0591236F2A400A70C51 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F4F0D0581236F2A400A70C51 /* libicucore.dylib */; };
 		F4F0D13B123719D000A70C51 /* DraggableIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = F4F0D13A123719D000A70C51 /* DraggableIconView.m */; };
 		F4F0D21212372F7400A70C51 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58150DA1D0A300B32029 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
@@ -22,20 +22,19 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1DDD58150DA1D0A300B32029 /* MainMenu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		256AC3D80F4B6AC300CF3369 /* IconScannerAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconScannerAppDelegate.h; sourceTree = "<group>"; };
-		256AC3D90F4B6AC300CF3369 /* IconScannerAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconScannerAppDelegate.m; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* IconScannerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconScannerController.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* IconScannerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IconScannerController.m; sourceTree = "<group>"; };
 		256AC3F00F4B6AF500CF3369 /* IconScanner_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IconScanner_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* IconScanner-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "IconScanner-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* IconScanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IconScanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4493F3C203D92490035D947 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = IconScanner/Images.xcassets; sourceTree = "<group>"; };
+		F4493F3E203D92930035D947 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F470F9911235CC1900F6498D /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = /System/Library/Frameworks/Quartz.framework; sourceTree = "<absolute>"; };
 		F470F9C11235D0E100F6498D /* STUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STUtil.h; sourceTree = "<group>"; };
 		F470F9C21235D0E100F6498D /* STUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STUtil.m; sourceTree = "<group>"; };
 		F47FD7F61239C8C900894F36 /* ScanTools.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ScanTools.plist; sourceTree = "<group>"; };
 		F4A122E22035AEB200A7F19E /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
-		F4F0D03E1236F25A00A70C51 /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
-		F4F0D03F1236F25A00A70C51 /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
-		F4F0D0581236F2A400A70C51 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = /usr/lib/libicucore.dylib; sourceTree = "<absolute>"; };
 		F4F0D139123719D000A70C51 /* DraggableIconView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DraggableIconView.h; sourceTree = "<group>"; };
 		F4F0D13A123719D000A70C51 /* DraggableIconView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DraggableIconView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -47,7 +46,6 @@
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				F470F9921235CC1900F6498D /* Quartz.framework in Frameworks */,
-				F4F0D0591236F2A400A70C51 /* libicucore.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,14 +57,9 @@
 			children = (
 				256AC3F00F4B6AF500CF3369 /* IconScanner_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				256AC3D80F4B6AC300CF3369 /* IconScannerAppDelegate.h */,
-				256AC3D90F4B6AC300CF3369 /* IconScannerAppDelegate.m */,
-				F4F0D139123719D000A70C51 /* DraggableIconView.h */,
-				F4F0D13A123719D000A70C51 /* DraggableIconView.m */,
-				F470F9C11235D0E100F6498D /* STUtil.h */,
-				F470F9C21235D0E100F6498D /* STUtil.m */,
-				F4F0D03E1236F25A00A70C51 /* RegexKitLite.h */,
-				F4F0D03F1236F25A00A70C51 /* RegexKitLite.m */,
+				256AC3D80F4B6AC300CF3369 /* IconScannerController.h */,
+				256AC3D90F4B6AC300CF3369 /* IconScannerController.m */,
+				F4493F43203D93990035D947 /* Util */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -94,6 +87,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F4493F3E203D92930035D947 /* Credits.rtf */,
+				F4493F3C203D92490035D947 /* Images.xcassets */,
 				F47FD7F61239C8C900894F36 /* ScanTools.plist */,
 				8D1107310486CEB800E47090 /* IconScanner-Info.plist */,
 				1DDD58150DA1D0A300B32029 /* MainMenu.xib */,
@@ -104,11 +99,21 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F4F0D0581236F2A400A70C51 /* libicucore.dylib */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				F470F9911235CC1900F6498D /* Quartz.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4493F43203D93990035D947 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				F4F0D139123719D000A70C51 /* DraggableIconView.h */,
+				F4F0D13A123719D000A70C51 /* DraggableIconView.m */,
+				F470F9C11235D0E100F6498D /* STUtil.h */,
+				F470F9C21235D0E100F6498D /* STUtil.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,8 +169,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4493F3D203D92490035D947 /* Images.xcassets in Resources */,
 				F4F0D21212372F7400A70C51 /* MainMenu.xib in Resources */,
 				F47FD7F71239C8C900894F36 /* ScanTools.plist in Resources */,
+				F4493F3F203D92930035D947 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,9 +184,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				256AC3DA0F4B6AC300CF3369 /* IconScannerAppDelegate.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* IconScannerController.m in Sources */,
 				F470F9C31235D0E100F6498D /* STUtil.m in Sources */,
-				F4F0D0401236F25A00A70C51 /* RegexKitLite.m in Sources */,
 				F4F0D13B123719D000A70C51 /* DraggableIconView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,7 +197,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
@@ -200,8 +210,10 @@
 				GCC_PREFIX_HEADER = IconScanner_Prefix.pch;
 				INFOPLIST_FILE = "IconScanner-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.IconScanner;
 				PRODUCT_NAME = IconScanner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -209,14 +221,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 5WX26Y89JP;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = IconScanner_Prefix.pch;
 				INFOPLIST_FILE = "IconScanner-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_BUNDLE_IDENTIFIER = org.sveinbjorn.IconScanner;
 				PRODUCT_NAME = IconScanner;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
