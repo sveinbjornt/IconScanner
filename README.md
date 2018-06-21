@@ -6,12 +6,7 @@ I threw it together quickly at some point back in the day to inspect icon assets
 
 ## Download
 
-* [Download IconScanner 1.1](http://sveinbjorn.org/files/software/IconScanner.zip) (~250 KB, Intel 64-bit only)
-
-## Requirements
-
-* Intel 64-bit Mac
-* macOS 10.7 or later
+* [Download IconScanner 1.2](http://sveinbjorn.org/files/software/IconScanner.zip) (~250 KB, 10.8, Intel 64-bit only)
 
 ## Screenshot
 
@@ -19,17 +14,21 @@ I threw it together quickly at some point back in the day to inspect icon assets
 
 ## Version history
 
+### 21/06/2018
+
+* Added searchfs search tool option
+
 ### 21/02/2018 - Version 1.1
 
 * Modernised codebase and moved to ARC
 * Added contextual menu for items
 * mdfind now uses UTIs to locate icon files instead of suffix
 
-###  09/07/2010 Version 1.0
+###  09/07/2010 - Version 1.0
 
 ## BSD License
 
-Copyright (C) 2010 Sveinbjorn Thordarson
+Copyright (C) 2010-2018 Sveinbjorn Thordarson
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:

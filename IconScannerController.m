@@ -8,7 +8,6 @@
 //
 
 #import "IconScannerController.h"
-#import "Alerts.h"
 #import "NSWorkspace+Additions.h"
 #import <Quartz/Quartz.h>
 
@@ -116,17 +115,33 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    [window setRepresentedURL:[NSURL URLWithString:@""]];
+    [[window standardWindowButton:NSWindowDocumentIconButton] setImage:[NSApp applicationIconImage]];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(foundFiles)
                                                  name:@"IconScannerFilesFoundNotification"
                                                object:nil];
+    
+    
+}
+
+- (BOOL)window:(NSWindow *)window shouldPopUpDocumentPathMenu:(NSMenu *)menu {
+    // Prevent popup menu when window icon/title is cmd-clicked
+    return NO;
+}
+
+- (BOOL)window:(NSWindow *)window shouldDragDocumentWithEvent:(NSEvent *)event from:(NSPoint)dragImageLocation withPasteboard:(NSPasteboard *)pasteboard {
+    // Prevent dragging of title bar icon
+    return NO;
 }
 
 - (void)awakeFromNib {
     // Create two arrays: The first is for the data source representation.
-    // The second one contains temporary imported images for thread safeness.
-    images = [[NSMutableArray alloc] init];
-    importedImages = [[NSMutableArray alloc] init];
+    // The second one contains temporary imported images for thread safety.
+    images = [NSMutableArray array];
+    importedImages = [NSMutableArray array];
     
     // Allow reordering, animations and set the dragging destination delegate.
     [imageBrowser setAnimates:YES];
@@ -192,8 +207,13 @@
                     break;
                 }
             }
+            
+            CFRelease(supportedTypes);
+            CFRelease(uti);
         }
     }
+    
+    CFRelease(url);
     
     return isImageFile;
 }
@@ -233,30 +253,27 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getTextData:) name:NSFileHandleReadCompletionNotification object:readHandle];
     [readHandle readInBackgroundAndNotify];
     
-    int selectedTool = [[[NSUserDefaults standardUserDefaults] objectForKey:@"scanToolIndex"] intValue];
-    NSString *cmd = [[NSUserDefaults standardUserDefaults] objectForKey:@"ScanTools"][selectedTool];
-    
-    NSArray *cmdComponents = [cmd componentsSeparatedByString:@" "];
-    [task setLaunchPath:cmdComponents[0]];
-     NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, [cmdComponents count]-1)];
-     [task setArguments:[cmdComponents objectsAtIndexes:indexSet]];
-    
-    
-    if ([[searchToolPopupButton titleOfSelectedItem] isEqualToString:@"locate"]) {
-        [task setLaunchPath:@"/usr/bin/locate"];
-        [task setArguments:@[@"*.icns"]];
-    } else if ([[searchToolPopupButton titleOfSelectedItem] isEqualToString:@"mdfind"]) {
+    NSString *title = [searchToolPopupButton titleOfSelectedItem];
+    if ([title isEqualToString:@"mdfind"]) {
         [task setLaunchPath:@"/usr/bin/mdfind"];
         //[task setArguments:@[@"-name", @".icns"]];
         [task setArguments:@[@"kMDItemContentType == 'com.apple.icns'"]];
-    } else if ([[searchToolPopupButton titleOfSelectedItem] isEqualToString:@"find"]) {
-//find / \! \( -path "/bin/*" -or -path "/dev/*" -or -path "/sbin/*" -or -path "/private/*" -or -path "/usr/*" -or -name ".*" \) -name *.icns -print
+    } else if ([title isEqualToString:@"find"]) {
         [task setLaunchPath:@"/usr/bin/find"];
         [task setArguments:@[@"/", @"-name", @"*.icns"]];
+    } else if ([title isEqualToString:@"searchfs"]) {
+        NSString *searchfsPath = [[NSBundle mainBundle] pathForResource:@"searchfs" ofType:@""];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:searchfsPath]) {
+            [task setLaunchPath:searchfsPath];
+            [task setArguments:@[@".icns"]];
+        } else {
+            NSBeep();
+        }
     } else {
-        [Alerts fatalAlert:@"Illegal search tool" subText:@"No search tool specified"];
+        [task setLaunchPath:@"/usr/bin/locate"];
+        [task setArguments:@[@"*.icns"]];
     }
-
+    
     [task launch];
     
     [progressBar setUsesThreadedAnimation:YES];
@@ -436,8 +453,6 @@
             NSLog(@"%@", [error localizedDescription]);
         }
     }];
-
-    
 }
 
 #pragma mark IKImageBrowserDataSource

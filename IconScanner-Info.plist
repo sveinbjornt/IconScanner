@@ -6,8 +6,6 @@
 	<string>© 2010 Sveinbjorn Thordarson.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2010 Sveinbjorn Thordarson.</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
@@ -21,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.2</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSMainNibFile</key>

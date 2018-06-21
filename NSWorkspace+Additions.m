@@ -1,5 +1,5 @@
 /*
- Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjornt@gmail.com>
+ Copyright (c) 2003-2018, Sveinbjorn Thordarson <sveinbjorn@sveinbjorn.org>
  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without modification,
@@ -128,9 +128,6 @@
 
 - (UInt64)fileOrFolderSize:(NSString *)path {
     NSString *fileOrFolderPath = [path copy];
-#if !__has_feature(objc_arc)
-    [fileOrFolderPath autorelease];
-#endif
     
     BOOL isDir;
     if (path == nil || ![[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir]) {
